@@ -1,0 +1,984 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../menu/">
+      
+      
+        <link rel="next" href="../parameters/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.33">
+    
+    
+      
+        <title>movement.py - Submerged program</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#movementpy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Submerged program" class="md-header__button md-logo" aria-label="Submerged program" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Submerged program
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              movement.py
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="white"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="white"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Návod a přehled
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../main/" class="md-tabs__link">
+        
+  
+    
+  
+  main.py
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../menu/" class="md-tabs__link">
+        
+  
+    
+  
+  menu.py
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  movement.py
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parameters/" class="md-tabs__link">
+        
+  
+    
+  
+  parameters.py
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../rideSelect/" class="md-tabs__link">
+        
+  
+    
+  
+  RideSelect.py
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../selfTest/" class="md-tabs__link">
+        
+  
+    
+  
+  selfTest.py
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../sensors/" class="md-tabs__link">
+        
+  
+    
+  
+  sensors.py
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Submerged program" class="md-nav__button md-logo" aria-label="Submerged program" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Submerged program
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Návod a přehled
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../main/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    main.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../menu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    menu.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    movement.py
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    movement.py
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funkce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funkce
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funkce">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#straight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Straight()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Turn()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curve()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turntoolto" class="md-nav__link">
+    <span class="md-ellipsis">
+      TurnToolTo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      InitialValue()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interrupt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrupt()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pouzite-parametry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Použité parametry
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    parameters.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rideSelect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RideSelect.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../selfTest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    selfTest.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sensors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sensors.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funkce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funkce
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funkce">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#straight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Straight()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Turn()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curve()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turntoolto" class="md-nav__link">
+    <span class="md-ellipsis">
+      TurnToolTo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      InitialValue()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interrupt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrupt()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pouzite-parametry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Použité parametry
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="movementpy">movement.py</h1>
+<p>Soubor sloužící ovládání pohybů motorů. V souboru se také nastavuje PID regulátor. </p>
+<h2 id="funkce">Funkce</h2>
+<h3 id="straight">Straight()</h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Straight</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">usePID</span><span class="p">:</span><span class="nb">bool</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">acc</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">interrupt</span><span class="p">:</span><span class="nb">bool</span><span class="p">,</span> <span class="n">last</span><span class="p">:</span><span class="nb">bool</span><span class="p">)</span>
+</code></pre></div>
+Funkce nejdříve nastaví rychlost a akceleraci pro jizdu. Po nastaveni zkontroluje zda se bude pouzivat PID nebo na 
+zaklade usePID. Pokud se pouzivat bude (usePID = True) tak se zkontroluje zda robot pojede dopředu nebo dozadu. Pokud
+pojede dopredu nasatvi se konstatnty pro jizdu dopredu, ale pokud pojede dozadu nastavi se konstanty pro jizdu dozadu.
+Az se toto vse nastavi tak se sputi motory na vzdalenost value</p>
+<p><strong>Parametry:</strong><br>
+- value - Jak daleko ma jet<br>
+- wait - Zda ma cekat az se tento pohyb dokonci<br>
+- usePID - Zda se ma pouzivat PID (defult: True)<br>
+- speed - Jakou rychlosti ma jet (deafult: DEAFULT_SPEED_STRAIGHT_BASE = 900)<br>
+- acc - Jakou akcelereaci ma zrychlovat (deafult: DEAFULT_ACC_STRAIGHT_BASE = 1000)<br></p>
+<p><br>
+<br></p>
+<h3 id="turn">Turn()</h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Turn</span><span class="p">(</span><span class="n">onAngle</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">interrupt</span><span class="p">:</span><span class="nb">bool</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">acc</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">last</span><span class="p">:</span><span class="nb">bool</span><span class="p">)</span>
+</code></pre></div>
+Funkce která se stará o otáční robota. Funkce jako první zkontroluje zda je to poslední pohyb nebo ne. Pokud je to poslední pohyb nastaví se zastavení na nedržení polohy, ale pokud to není poslední pohyb tak se zastavení nastaví na držení polohy motoru. Následně se spustí otáčení na úhel a spoečně s tím se spustí interrupt na základě parametru interrupt.</p>
+<p><strong>Parametry</strong><br>
+- onAngle - Na jaký úhel se má robot otočit<br>
+- interrupt - Zda se má robot zastavit pokud se zvedne<br>
+- speed - Jakou rychlostí se má robot otáčet<br>
+- acc - Jak moc ma akcelerovat při zatáční<br>
+- last - Zda je to poslední pohyb nebo ne<br></p>
+<p><br>
+<br></p>
+<h3 id="curve">Curve()</h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Curve</span><span class="p">(</span><span class="n">radius</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span><span class="nb">bool</span> <span class="n">speed</span><span class="p">,</span> <span class="n">acc</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">last</span><span class="p">:</span><span class="nb">bool</span><span class="p">)</span>
+</code></pre></div>
+Funkce jako první nastaví rychlost a akceleraci. Potom zkontroluje zda je pohyb poslední. Pokud je pohyb poslení. Pokud je pohyb poslední, tak se nastaví zastavení na na nedržení polohy motorů. Potom se spustí motory, společně s funkcí interrupt ketrá se stavá o zastavení robota při zvendnutí. Robot se při jízdě trošku třese.</p>
+<p><strong>Parametery</strong><br>
+- radius - Poloměr kruhu<br>
+- angle - Uhel podel kruhu<br>
+- interrupt - Pokud se má robot při zvednutí zastavit (deafult:False)<br>
+- speed - Jakou rychlostí se má jet (deafult:DEAFULT_SPEED_STRAIGHT_BASE = 900)<br>
+- acc - Nastavení zrychlení (deafult: DEAFULT_ACC_STRAIGHT_BASE = 1000)<br>
+- last Zda je to poslední pohyb</p>
+<p><br>
+<br></p>
+<h3 id="turntoolto">TurnToolTo</h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">TurntTool</span><span class="p">(</span><span class="n">angle</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">motorSelect</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span><span class="nb">bool</span><span class="p">,</span> <span class="n">last</span><span class="p">:</span><span class="nb">bool</span><span class="p">)</span>
+</code></pre></div>
+Funkce jako první zkontroluje kterým motorem se má otáčet a potom spustí motory s danou rychlostí na danný úhel.</p>
+<p><strong>Patametry</strong>
+- angle - O kolik se ma motor otočit<br>
+- speed - Jakou rychlostí se má motor otočit<br>
+- motorSelect - Jaky motor se má otočit (R/L)<br>
+- interrupt - Zda má robot zastavit když se zvedne (deafult:True)<br>
+- last - Zda je tento pohyb poslední (deafult:False)<br></p>
+<p><br>
+<br></p>
+<h3 id="initialvalue">InitialValue()</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">InitialValue</span><span class="p">(</span><span class="n">resetWait</span><span class="p">:</span><span class="nb">bool</span><span class="p">)</span>
+</code></pre></div>
+<p>Funkce pro zapsání prvontích hodnto z gyroskopu (pro interrupt), resetování gyroskopu pro zatáčení a připravení barevých senzorů (jejich rozsvícení). Funkce jako první počká nežrobot bude stát pevně a až potom vše nastaví a připraví. Tato funkce se spušít při startu programu, před testem gyroskopu a při zvolení I v menu. Funkci bylo potřeba vytvořit pro přesnější hýbání robota přípravu robota. </p>
+<p><strong>Parametry</strong><br>
+- resetWait - zda se má čekat než se robot uklidní/bude na stole.<br></p>
+<p><br>
+<br></p>
+<h3 id="interrupt">Interrupt()</h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Interrupt</span><span class="p">(</span><span class="n">gear</span><span class="p">)</span>
+</code></pre></div>
+Tato funkce slouží k zastavení pohybu při zvednutí robota. Jako první se spustí smyčka která běží dokud motor nedokončí svůj pohyb nebo robot se nezvedne. Pokud se smyčka ukončí tak se program přesune do menu pro výběr jízd. Tato funkce se spouští při jakémkoliv pohybu, pokud není vypnutý. Funke využívá možnosti <code>wait</code> při spouštění nebo obládání motorů, tak že běží smyčka ve funkci a čeká než se motor dohýbe, toto umožňuje využít čas který byl použit při čekání dokončení pohybu efektivněji, kontrolování natočení robota.</p>
+<p><strong>Parametry</strong><br>
+- gear - Co se má při zvednutí zastavit, proměná motoru ketrý se právě hýbe.</p>
+<p><br>
+<br>
+<br></p>
+<h2 id="pouzite-parametry">Použité parametry</h2>
+<p>Použité paramtery jsou napsané ve formátu.<br>
+<code>NÁZEV_PROMĚNÉ_V_SOUBORU = parameters.NÁZEV_PROMĚNÉ_V_PARAMETERS</code><br>
+<br></p>
+<p>Nastavení konstant PID pro jízdu vpřed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">K_P_STRAIGHT_BASE</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">K_P_STRAIGHT_BASE</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">K_I_STRAIGHT_BASE</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">K_I_STRAIGHT_BASE</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">K_D_STRAIGHT_BASE</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">K_D_STRAIGHT_BASE</span>
+</code></pre></div>
+<br></p>
+<p>Integral deadzone pro PID regulátor<br>
+<code>INTEGRAL_DEADZONE_STRAIGHT_BASE = parameters.INTEGRAL_DEADZONE_STRAIGHT_BASE</code><br>
+<br></p>
+<p>Integral rate pro PID regulátor<br>
+<code>INTEGRAL_RATE_STRAIGHT_BASE = parameters.INTEGRAL_RATE_STRAIGHT_BASE</code><br>
+<br></p>
+<p>Konstanty pro vypnuté PID
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">K_P_STRAIGHT_BASE_OFF</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">K_P_STRAIGHT_BASE_OFF</span> 
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">K_I_STRAIGHT_BASE_OFF</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">K_I_STRAIGHT_BASE_OFF</span> 
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">K_D_STRAIGHT_BASE_OFF</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">K_D_STRAIGHT_BASE_OFF</span> 
+</code></pre></div>
+<br></p>
+<p>Integral deadzone pro vypnuté PID<br>
+<code>INTEGRAL_DEADZONE_STRAIGHT_BASE_OFF = parameters.INTEGRAL_DEADZONE_STRAIGHT_BASE_OFF</code><br>
+<br></p>
+<p>Integral rate pro vypnuté PID<br>
+<code>INTEGRAL_RATE_STRAIGHT_BASE_OFF = parameters.INTEGRAL_RATE_STRAIGHT_BASE_OFF</code><br>
+<br></p>
+<p>Základní rychlost pro jízdu dopředu<br>
+<code>DEAFULT_SPEED_STRAIGHT_BASE = parameters.DEAFULT_SPEED_STRAIGHT_BASE</code><br>
+<br></p>
+<p>Zákldaní akcelrace pro jízdu dopředu<br>
+<code>DEAFULT_ACC_STRAIGHT_BASE = parameters.DEAFULT_ACC_STRAIGHT_BASE</code><br>
+<br></p>
+<p>Základní rychlost zatáčení<br>
+<code>DEAFULT_TURN_RATE_BASE = parameters.DEAFULT_TURN_RATE_BASE</code><br>
+<br></p>
+<p>Základní akcelerace pro zatáčení<br>
+<code>DEAFULT_TURN_ACC_BASE = parameters.DEAFULT_TURN_ACC_BASE</code><br>
+<br></p>
+<p>Jestli se má při jízdě dopředu a zátáčení používat gyroskop pro rovnání<br>
+<code>DEAFULT_USEING_GYRO = parameters.DEAFULT_USING_GYRO_BASE</code><br>
+<br></p>
+<p>Nastavení portů pro motory na pohyb<br>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">MOTOR_R_PORT</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">MOTOR_R_PORT</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">MOTOR_L_PORT</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">MOTOR_L_PORT</span> 
+</code></pre></div>
+<br></p>
+<p>Nastavení portů pro motory na nástavce<br>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">MOTOR_ATT_R_PORT</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">MOTOR_ATT_R_PORT</span> 
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">MOTOR_ATT_L_PORT</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">MOTOR_ATT_L_PORT</span>
+</code></pre></div>
+<br></p>
+<p>Nastavení směru otáčení motorů pro jízdu<br>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">MOTOR_L_DIRECTION</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">MOTOR_L_DIRECTION</span> 
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">MOTOR_R_DIRECTION</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">MOTOR_R_DIRECTION</span>
+</code></pre></div>
+<br></p>
+<p>Nastavení axle tarck (vzdálensot mezi body kde se robot dotýká země)<br>
+<code>AXLE_TRACK = parameters.AXLE_TRACK</code><br>
+<br></p>
+<p>Velikost koleček<br>
+<code>WHEEL_DIAMETER = parameters.WHEEL_DIAMETER</code><br>
+<br></p>
+<p>Od jaké vzdálenosti má robot jet dopředu<br>
+<code>MINMAL_STRAIGHT_VALUE_BASE = parameters.MINIMAL_STRAIGHT_VALUE_BASE</code><br>
+<br></p>
+<p>Od jaké vzdálenosti má robot jet dozadu<br>
+<code>MINIMAL_BACK_VALUE_BASE = parameters.MINIMAL_BACK_VALUE_BASE</code><br>
+<br></p>
+<p>Nastavení úhlu, o kolik se musí robot otočit pro aktivaci interrupt<br>
+<code>INTERRUPT_ANGLE = parameters.INTERRUPT_ANGLE</code><br>
+<br></p>
+<p>Nastavení jakým způsbem má zastavit pokud je to poslední pohyb<br>
+<code>STOP_IF_LAST = parameters.STOP_IF_LAST</code><br>
+<br></p>
+<p>Nastavení jakým způsobem má zastavit pokud to není poslední pohyb<br>
+<code>STOP_IF_NOT_LAST = parameters.STOP_IF_NOT_LAST</code><br>
+<br></p>
+<p>Normální rychlost animací<br>
+<code>NORMAL_ANIMATIONS = parameters.NORMAL_ANIMATIONS</code><br>
+<br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.af256bd8.min.js"></script>
+      
+    
+  </body>
+</html>
